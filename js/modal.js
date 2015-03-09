@@ -1,4 +1,17 @@
-(function($, _, Backbone) {
+( function( root, factory ) {
+// Set up Backbone-relational for the environment. Start with AMD.
+if ( typeof define === 'function' && define.amd ) {
+define( [ 'jquery', 'underscore' , 'backbone'], factory );
+}
+// Next for Node.js or CommonJS.
+else if ( typeof exports !== 'undefined' ) {
+factory( require( 'jquery' ), require( 'underscore' ) , require( 'backbone' ));
+}
+// Finally, as a browser global. Use `root` here as it references `window`.
+else {
+factory( root.$, root.Backbone, root._ );
+}
+}( this, (function($, _, Backbone) {
 
   var _setModalTemplate = function(options){
     //overwrite the default template
@@ -204,4 +217,4 @@
     Backbone.FoundationModal = Modal;
   }
 
-})(jQuery, _, Backbone);
+}));
